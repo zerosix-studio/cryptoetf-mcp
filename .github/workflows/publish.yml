@@ -59,8 +59,12 @@ jobs:
       # Тот же тарбол во внутренний реестр GitHub. Ставить оттуда неудобно —
       # он требует авторизации даже к публичному пакету, — но именно эта
       # публикация заполняет блок Packages в сайдбаре репозитория.
+      #
+      # Учётные данные пишем прямо в ~/.npmrc: setup-node настроил его под
+      # npmjs, и для второго реестра NODE_AUTH_TOKEN не подхватывается —
+      # публикация падала с ENEEDAUTH.
       - name: Mirror to GitHub Packages
-        continue-on-error: true
-        run: npm publish --registry=https://npm.pkg.github.com
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.check.outputs.already == 'false'
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+          npm publish --registry=https://npm.pkg.github.com
