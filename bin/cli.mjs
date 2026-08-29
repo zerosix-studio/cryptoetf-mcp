@@ -5,7 +5,7 @@
  * The server itself lives at https://mcp.cryptoetf.today/api/mcp and speaks
  * HTTP, so clients that support the remote transport (Claude Code, Cursor,
  * VS Code) do not need this package — they connect directly. It exists for
- * clients that only speak stdio: those run `npx @zerosix-studio/cryptoetf`
+ * clients that only speak stdio: those run `npx @zerosix-studio/cryptoetf-mcp`
  * and get the very same server.
  *
  * No dependencies on purpose: `npx` should not pull a package tree just to

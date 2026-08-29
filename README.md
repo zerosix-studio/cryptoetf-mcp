@@ -45,7 +45,7 @@ claude mcp add --transport http cryptoetf https://mcp.cryptoetf.today/api/mcp
   "mcpServers": {
     "cryptoetf": {
       "command": "npx",
-      "args": ["-y", "@zerosix-studio/cryptoetf"]
+      "args": ["-y", "@zerosix-studio/cryptoetf-mcp"]
     }
   }
 }
