@@ -6,7 +6,7 @@
     "url": "https://github.com/zerosix-studio/cryptoetf-mcp",
     "source": "github"
   },
-  "version": "1.0.4",
+  "version": "1.0.5",
   "websiteUrl": "https://cryptoetf.today/en/api",
   "remotes": [
     {
@@ -19,7 +19,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@zerosix-studio/cryptoetf-mcp",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "transport": {
         "type": "stdio"
       }
