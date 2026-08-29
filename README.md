@@ -92,4 +92,17 @@ informational — this is market data, not investment advice.
 - Website: [cryptoetf.today](https://cryptoetf.today)
 - REST API and MCP docs: [cryptoetf.today/en/api](https://cryptoetf.today/en/api)
 
+## Releasing
+
+Bump the version in `package.json`, then tag the commit:
+
+```bash
+git tag v1.0.4 && git push --tags
+```
+
+The `Publish to npm` workflow runs the bridge against the live server, skips
+the publish if that version is already in the registry, and otherwise pushes it
+with provenance — the npm page then links back to the exact workflow run and
+commit the tarball was built from.
+
 MIT licensed.
