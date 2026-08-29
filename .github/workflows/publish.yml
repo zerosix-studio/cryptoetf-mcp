@@ -60,12 +60,18 @@ jobs:
       # он требует авторизации даже к публичному пакету, — но именно эта
       # публикация заполняет блок Packages в сайдбаре репозитория.
       #
-      # Учётные данные дописываем в тот же конфиг, что настроил setup-node:
-      # он уводит npm на свой файл через NPM_CONFIG_USERCONFIG, поэтому записи
-      # в ~/.npmrc игнорировались и зеркало падало с ENEEDAUTH.
+      # Отдельный setup-node вместо ручной правки .npmrc: он уводит npm на свой
+      # конфиг через NPM_CONFIG_USERCONFIG, поэтому дописывание строк в файл не
+      # работало и зеркало падало с ENEEDAUTH.
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.already == 'false'
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: '@zerosix-studio'
+
       - name: Mirror to GitHub Packages
         if: steps.check.outputs.already == 'false'
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" \
-            >> "${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
-          npm publish --registry=https://npm.pkg.github.com
+        run: npm publish --registry=https://npm.pkg.github.com
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
