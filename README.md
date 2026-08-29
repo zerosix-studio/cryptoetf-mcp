@@ -1,5 +1,9 @@
 # CryptoETF MCP — spot crypto ETF flows for AI agents
 
+[![npm](https://img.shields.io/npm/v/@zerosix-studio/cryptoetf-mcp?color=cb3837&logo=npm)](https://www.npmjs.com/package/@zerosix-studio/cryptoetf-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/@zerosix-studio/cryptoetf-mcp?color=cb3837)](https://www.npmjs.com/package/@zerosix-studio/cryptoetf-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.sly13%2Fcryptoetf-5b6cff)](https://registry.modelcontextprotocol.io)
+
 The [Model Context Protocol](https://modelcontextprotocol.io) surface of
 [cryptoetf.today](https://cryptoetf.today): daily net flows for every US-listed
 spot crypto ETF complex, the CEFI sentiment index and live coin prices — for
