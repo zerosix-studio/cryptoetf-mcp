@@ -60,11 +60,12 @@ jobs:
       # он требует авторизации даже к публичному пакету, — но именно эта
       # публикация заполняет блок Packages в сайдбаре репозитория.
       #
-      # Учётные данные пишем прямо в ~/.npmrc: setup-node настроил его под
-      # npmjs, и для второго реестра NODE_AUTH_TOKEN не подхватывается —
-      # публикация падала с ENEEDAUTH.
+      # Учётные данные дописываем в тот же конфиг, что настроил setup-node:
+      # он уводит npm на свой файл через NPM_CONFIG_USERCONFIG, поэтому записи
+      # в ~/.npmrc игнорировались и зеркало падало с ENEEDAUTH.
       - name: Mirror to GitHub Packages
         if: steps.check.outputs.already == 'false'
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" \
+            >> "${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
           npm publish --registry=https://npm.pkg.github.com
