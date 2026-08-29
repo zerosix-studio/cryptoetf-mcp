@@ -1,0 +1,43 @@
+{
+  "name": "@zerosix-studio/cryptoetf",
+  "version": "1.0.0",
+  "description": "CryptoETF MCP — live spot crypto ETF flow data for AI agents: daily net flows for 13 assets (BTC, ETH, SOL, XRP, HYPE, DOGE, LINK, AVAX, HBAR, LTC, BNB, DOT, SUI), CEFI sentiment index and spot prices. Zero-dependency stdio bridge to the hosted Streamable HTTP endpoint.",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "crypto",
+    "etf",
+    "bitcoin-etf",
+    "ethereum-etf",
+    "etf-flows",
+    "claude",
+    "ai-agents"
+  ],
+  "homepage": "https://cryptoetf.today/en/api",
+  "bugs": {
+    "url": "https://github.com/zerosix-studio/cryptoetf-mcp/issues"
+  },
+  "license": "MIT",
+  "author": "cryptoetf.today",
+  "type": "module",
+  "bin": {
+    "cryptoetf-mcp": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerosix-studio/cryptoetf-mcp.git"
+  },
+  "mcpName": "io.github.zerosix-studio/cryptoetf"
+}

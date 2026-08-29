@@ -1,0 +1,28 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.zerosix-studio/cryptoetf",
+  "description": "Live spot crypto ETF flows for 13 assets, CEFI sentiment index and prices.",
+  "repository": {
+    "url": "https://github.com/zerosix-studio/cryptoetf-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "websiteUrl": "https://cryptoetf.today/en/api",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.cryptoetf.today/api/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@zerosix-studio/cryptoetf",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
