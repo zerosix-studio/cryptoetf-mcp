@@ -1,0 +1,59 @@
+{
+  "manifest_version": "0.3",
+  "name": "cryptoetf",
+  "display_name": "CryptoETF",
+  "version": "1.0.8",
+  "description": "Live spot crypto ETF flows for 13 assets, the CEFI sentiment index and spot prices.",
+  "long_description": "Daily net flows for every US-listed spot crypto ETF complex — BTC, ETH, SOL, XRP, HYPE, DOGE, LINK, AVAX, HBAR, LTC, BNB, DOT and SUI — plus the composite CEFI sentiment index and live coin prices. Figures are net USD millions taken from the issuers' own daily reports; for the eight smaller complexes, where no market-wide aggregator exists, they are computed from each issuer's fund pages. The extension is a zero-dependency stdio bridge to the hosted endpoint at mcp.cryptoetf.today — no API key and no account are required.",
+  "author": {
+    "name": "sly13",
+    "url": "https://github.com/sly13"
+  },
+  "homepage": "https://cryptoetf.today/en/api",
+  "documentation": "https://github.com/zerosix-studio/cryptoetf-mcp#readme",
+  "support": "https://github.com/zerosix-studio/cryptoetf-mcp/issues",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zerosix-studio/cryptoetf-mcp"
+  },
+  "license": "MIT",
+  "keywords": ["crypto", "etf", "bitcoin", "finance", "market-data"],
+  "privacy_policies": ["https://cryptoetf.today/en/privacy"],
+  "server": {
+    "type": "node",
+    "entry_point": "bin/cli.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/bin/cli.mjs"]
+    }
+  },
+  "tools": [
+    {
+      "name": "get_flows_summary",
+      "description": "Latest-day net ETF inflow/outflow in USD millions for all 13 tracked assets."
+    },
+    {
+      "name": "get_asset_flows",
+      "description": "Daily net ETF flow history for a single asset over the last 30 days."
+    },
+    {
+      "name": "get_weekly_analytics",
+      "description": "7-day aggregated flow analytics per asset: total, daily average, positive/negative day counts."
+    },
+    {
+      "name": "get_cefi_index",
+      "description": "Composite CEFI sentiment score across all tracked assets (baseline 100)."
+    },
+    {
+      "name": "get_prices",
+      "description": "Current spot price and 24-hour change for every tracked asset."
+    }
+  ],
+  "tools_generated": false,
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

@@ -96,6 +96,31 @@ informational — this is market data, not investment advice.
 - Website: [cryptoetf.today](https://cryptoetf.today)
 - REST API and MCP docs: [cryptoetf.today/en/api](https://cryptoetf.today/en/api)
 
+## Privacy Policy
+
+Full policy: [cryptoetf.today/en/privacy](https://cryptoetf.today/en/privacy).
+
+**What is collected.** The bridge forwards your JSON-RPC requests to
+`https://mcp.cryptoetf.today/api/mcp` and returns the responses. The only
+request data that leaves your machine is the tool name and its arguments (an
+asset ticker, at most). Conversation content, files and credentials are never
+read or transmitted.
+
+**How it is used and stored.** The server logs the standard request metadata of
+any web service — IP address, timestamp, endpoint — and keeps a per-IP counter
+in Redis to enforce the 60 requests/minute rate limit. Logs are retained for 30
+days and are used only to operate and protect the service.
+
+**Third-party sharing.** None. Request data is not sold, shared or passed to any
+third party. The service is operated by us and calls only our own API.
+
+**Retention.** Rate-limit counters expire within a minute; request logs within
+30 days. No user accounts and no personal profiles exist — the endpoint is open
+and unauthenticated.
+
+**Contact.** [github.com/zerosix-studio/cryptoetf-mcp/issues](https://github.com/zerosix-studio/cryptoetf-mcp/issues)
+or the contact form at [cryptoetf.today](https://cryptoetf.today).
+
 ## Releasing
 
 Bump the version in `package.json`, then tag the commit:
