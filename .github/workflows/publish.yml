@@ -1,8 +1,8 @@
 name: Publish to npm
 
-# Публикация по тегу: `git tag v1.0.4 && git push --tags`.
-# Версия берётся из package.json, тег нужен только как отметка релиза —
-# так в истории репозитория видно, какой коммит уехал в реестр.
+# Releasing is tagging: `git tag v1.0.4 && git push --tags`.
+# The version comes from package.json; the tag only marks the release, so the
+# repository history shows which commit went to the registry.
 on:
   push:
     tags:
@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      # Публикация зеркала в GitHub Packages — ради блока Packages на странице
-      # репозитория: npmjs туда не попадает, только собственный реестр GitHub.
+      # For the GitHub Packages mirror, which fills the Packages block on the
+      # repository page: npmjs never shows up there, only GitHub's own registry.
       packages: write
-      # Без id-token публикация пройдёт, но без provenance: именно этот токен
-      # позволяет npm подписать пакет и показать на его странице ссылку на
-      # workflow-run и коммит, из которых он собран.
+      # Without id-token the publish still works, but without provenance: this
+      # token is what lets npm sign the package and link its page back to the
+      # workflow run and the commit the tarball was built from.
       id-token: write
 
     steps:
@@ -56,13 +56,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # Тот же тарбол во внутренний реестр GitHub. Ставить оттуда неудобно —
-      # он требует авторизации даже к публичному пакету, — но именно эта
-      # публикация заполняет блок Packages в сайдбаре репозитория.
+      # The same tarball into GitHub's registry. Installing from it is awkward —
+      # it asks for authentication even for a public package — but this publish
+      # is what fills the Packages block in the repository sidebar.
       #
-      # Отдельный setup-node вместо ручной правки .npmrc: он уводит npm на свой
-      # конфиг через NPM_CONFIG_USERCONFIG, поэтому дописывание строк в файл не
-      # работало и зеркало падало с ENEEDAUTH.
+      # A second setup-node rather than editing .npmrc by hand: it points npm at
+      # its own config through NPM_CONFIG_USERCONFIG, so appending lines to the
+      # file was never read and the mirror kept dying with ENEEDAUTH.
       - uses: actions/setup-node@v4
         if: steps.check.outputs.already == 'false'
         with:
