@@ -38,20 +38,24 @@ jobs:
             | node bin/cli.mjs | tee /tmp/out.jsonl
           grep -q '"get_flows_summary"' /tmp/out.jsonl
 
-      - name: Skip if this version is already published
-        id: check
+      # Each registry is asked about itself. A single shared check used to gate
+      # both publishes on npmjs alone, so once a version was on npmjs the mirror
+      # step could never catch up — which is exactly what happened when the
+      # repository was recreated and its GitHub Packages entry was lost.
+      - name: Is this version on npmjs?
+        id: check_npm
         run: |
           NAME=$(node -p "require('./package.json').name")
           VERSION=$(node -p "require('./package.json').version")
           if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
             echo "already=true" >> "$GITHUB_OUTPUT"
-            echo "$NAME@$VERSION is already in the registry — nothing to do."
+            echo "$NAME@$VERSION is already on npmjs — skipping that publish."
           else
             echo "already=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Publish to npm
-        if: steps.check.outputs.already == 'false'
+        if: steps.check_npm.outputs.already == 'false'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -64,14 +68,27 @@ jobs:
       # its own config through NPM_CONFIG_USERCONFIG, so appending lines to the
       # file was never read and the mirror kept dying with ENEEDAUTH.
       - uses: actions/setup-node@v4
-        if: steps.check.outputs.already == 'false'
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com
           scope: '@zerosix-studio'
 
+      - name: Is this version on GitHub Packages?
+        id: check_ghp
+        run: |
+          NAME=$(node -p "require('./package.json').name")
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "$NAME@$VERSION" version --registry=https://npm.pkg.github.com >/dev/null 2>&1; then
+            echo "already=true" >> "$GITHUB_OUTPUT"
+            echo "$NAME@$VERSION is already on GitHub Packages — nothing to mirror."
+          else
+            echo "already=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Mirror to GitHub Packages
-        if: steps.check.outputs.already == 'false'
+        if: steps.check_ghp.outputs.already == 'false'
         run: npm publish --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
