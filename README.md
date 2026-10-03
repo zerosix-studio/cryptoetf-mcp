@@ -9,8 +9,8 @@ The [Model Context Protocol](https://modelcontextprotocol.io) surface of
 spot crypto ETF complex, the CEFI sentiment index and live coin prices — for
 Claude, Cursor, Codex, Gemini CLI and any other MCP-capable agent.
 
-Thirteen assets: **BTC, ETH, SOL, XRP, HYPE, DOGE, LINK, AVAX, HBAR, LTC, BNB,
-DOT, SUI**. Flow figures are net USD millions, sourced from the issuers' own
+Sixteen assets: **BTC, ETH, SOL, XRP, HYPE, DOGE, LINK, AVAX, HBAR, LTC, BNB,
+DOT, SUI, NEAR, TRX, ZEC**. Flow figures are net USD millions, sourced from the issuers' own
 daily reports; for the eight smaller complexes there is no market-wide
 aggregator, so the numbers are computed from each issuer's fund pages.
 
@@ -63,10 +63,10 @@ endpoint.
 
 | Tool | What it returns |
 |---|---|
-| `get_flows_summary` | Latest-day net flow for all 13 assets, with the date each figure belongs to |
+| `get_flows_summary` | Latest-day net flow for all 16 assets, with the date each figure belongs to |
 | `get_asset_flows` | Daily net flow history for one asset over the last 30 days |
 | `get_weekly_analytics` | 7-day totals per asset: net flow, average day, positive/negative day counts |
-| `get_cefi_index` | Composite CEFI sentiment score (baseline 100; above = bullish) |
+| `get_cefi_index` | Composite CEFI index (0–100, 50 = zero net flow) with its flow, trend and breadth components |
 | `get_prices` | Spot price and 24h change for every tracked asset |
 
 History reaches back 30 days. Deeper history and per-fund breakdowns live in the
