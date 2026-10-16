@@ -2,9 +2,9 @@
   "manifest_version": "0.3",
   "name": "cryptoetf",
   "display_name": "CryptoETF",
-  "version": "1.0.11",
-  "description": "Live spot crypto ETF flows for 16 assets, the CEFI sentiment index and spot prices.",
-  "long_description": "Daily net flows for every US-listed spot crypto ETF complex — BTC, ETH, SOL, XRP, HYPE, DOGE, LINK, AVAX, HBAR, LTC, BNB, DOT, SUI, NEAR, TRX and ZEC — plus the composite CEFI sentiment index and live coin prices. Figures are net USD millions taken from the issuers' own daily reports; for the eleven smaller complexes, where no market-wide aggregator exists, they are computed from each issuer's fund pages. The extension is a zero-dependency stdio bridge to the hosted endpoint at mcp.cryptoetf.today — no API key and no account are required.",
+  "version": "1.0.12",
+  "description": "Live spot crypto ETF flows for 16 assets and every fund behind them, the CEFI sentiment index and spot prices.",
+  "long_description": "Daily net flows for every US-listed spot crypto ETF complex — BTC, ETH, SOL, XRP, HYPE, DOGE, LINK, AVAX, HBAR, LTC, BNB, DOT, SUI, NEAR, TRX and ZEC — broken down fund by fund, plus the composite CEFI sentiment index and live coin prices. Figures are net USD millions taken from the issuers' own daily reports; for the eleven smaller complexes, where no market-wide aggregator exists, they are computed from each issuer's fund pages. The extension is a zero-dependency stdio bridge to the hosted endpoint at mcp.cryptoetf.today — no API key and no account are required.",
   "author": {
     "name": "sly13",
     "url": "https://github.com/sly13"
@@ -36,6 +36,14 @@
     {
       "name": "get_asset_flows",
       "description": "Daily net ETF flow history for a single asset over the last 30 days."
+    },
+    {
+      "name": "get_fund_flows",
+      "description": "Daily net flows of every fund on one asset (IBIT, FBTC, ETHA…) over the last 30 days, with ticker and issuer."
+    },
+    {
+      "name": "get_funds",
+      "description": "Fund directory: issuer, sponsor fee, listing date, current net assets (AUM) and coins held for every spot crypto ETF."
     },
     {
       "name": "get_weekly_analytics",
