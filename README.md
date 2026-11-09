@@ -70,6 +70,11 @@ endpoint.
 | `get_weekly_analytics` | 7-day totals per asset: net flow, average day, positive/negative day counts |
 | `get_cefi_index` | Composite CEFI index (0–100, 50 = zero net flow) with its flow, trend and breadth components |
 | `get_prices` | Spot price and 24h change for every tracked asset |
+| `get_etf_holdings` | Coins held by the US spot ETFs of each asset, reported or estimated, as a share of circulating supply, with 7- and 30-day changes |
+| `get_btc_etf_vs_miners` | Weekly net creations of spot Bitcoin ETFs in BTC against bitcoin mined over the same days, and their ratio |
+| `get_issuer_revenue` | Sponsor fee revenue of every fund and issuer: net assets times the fee charged today, with fee waivers applied |
+| `get_staking` | Staking in each fund from SEC filings: status, share staked, net yield, providers and how rewards are paid |
+| `get_cost_basis` | Average entry price of ETF holders per asset, unrealised P&L and days in a row above or below entry |
 
 History reaches back 30 days, in the tools and in the
 [REST API](https://cryptoetf.today/en/api) alike. Longer history is on

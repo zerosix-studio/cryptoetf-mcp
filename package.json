@@ -1,6 +1,6 @@
 {
   "name": "@zerosix-studio/cryptoetf-mcp",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "CryptoETF MCP — live spot crypto ETF flow data for AI agents: daily net flows for 16 assets (BTC, ETH, SOL, XRP, HYPE, DOGE, LINK, AVAX, HBAR, LTC, BNB, DOT, SUI, NEAR, TRX, ZEC) and every fund behind them, CEFI sentiment index and spot prices. Zero-dependency stdio bridge to the hosted Streamable HTTP endpoint.",
   "keywords": [
     "mcp",
